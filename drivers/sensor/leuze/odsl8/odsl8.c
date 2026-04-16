@@ -8,10 +8,6 @@
 
 LOG_MODULE_REGISTER(LASER, CONFIG_SENSOR_LOG_LEVEL);
 
-#if DT_NUM_INST_STATUS_OKAY(DT_DRV_COMPAT) == 0
-#warning "Laser driver enabled without any devices"
-#endif
-
 struct sensor_config {
     const struct device *adc;
     struct adc_channel_cfg channel_config;

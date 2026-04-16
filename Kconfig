@@ -1,1 +1,1 @@
-rsource "drivers/sensor/odsl8/Kconfig"
+rsource "drivers/sensor/leuze/odsl8/Kconfig"

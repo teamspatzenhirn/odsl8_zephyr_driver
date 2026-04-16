@@ -4,6 +4,7 @@
 
 menuconfig ODSL8
 	bool "Leuze ODSL8 distance sensor"
+	default y
+	depends on DT_HAS_LEUZE_ODSL8_ENABLED
 	help
 	  Enable Leuze ODSL8 distance sensor
-
