@@ -1,0 +1,36 @@
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};
+
+&pinctrl {
+    pinmux_adc1: pinmux_adc1 {
+        group0{
+            pinmux = <&iomuxc_gpio_ad_b0_13_adc1_in2>; // Laser ADC 1, Pin 25
+            nxp,speed = "50-mhz";
+            drive-strength = "disabled";
+            slew-rate = "slow";
+        };
+    };
+};
+
+&adc1 {
+    status = "okay";
+    pinctrl-0 = <&pinmux_adc1>;
+    pinctrl-names = "default";
+};
+
+/ {
+    chosen {
+	    zephyr,console = &cdc_acm_uart0;
+        // use hardware uart for early debug (if necessary):
+        // zephyr,console = &lpuart6;
+    };
+
+    my_sensor: odsl8_laser {
+        compatible = "leuze,odsl8";
+        io-channels = <&adc1 2>;
+        meas-resistor = <150>; 
+    };
+};
